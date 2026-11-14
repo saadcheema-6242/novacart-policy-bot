@@ -1,0 +1,29 @@
+# Secrets
+.env
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Built artifacts & binary indexes
+data/faiss_index/
+temp_demo_recordings/
+scripts/
+
+# OS / Editor
+.DS_Store
+.idea/
+.vscode/
+*.log
+
+# Internal agent metadata & scratch
+HANDOFF.md
+skills-lock.json
+.agents/
+tests/*.json

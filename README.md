@@ -142,4 +142,78 @@ Keep API keys in a `.env` file. It is already listed in `.gitignore`, so it will
 
 ---
 
-*Tech Fusion '26 · Innovate · Integrate · Inspire*
+---
+
+# NovaCart Policy Assistant — Production Implementation
+### Challenge A Entry · Tech Fusion '26 · Bahria University Islamabad
+
+A deterministic, adversarial-hardened AI assistant grounded strictly on the 22 NovaCart store policy files. Combines a deterministic rules engine with hybrid dense-vector (FAISS) and lexical (BM25) search, powered by **Google Cloud Vertex AI (Gemini 2.5 Flash)** with automatic fallback to **Groq (Llama 3.3 70B)**.
+
+---
+
+## Key Achievements & Benchmark Verification
+
+| Suite | Scope | Result | Details |
+| :--- | :--- | :---: | :--- |
+| **Official Benchmark** | 25 E2E Scenarios (Part 1 to Part 6) | **25 / 25 Passed (100%)** | Temporal boundaries, scope precedence, discount splits, warranty proration, prompt injection defenses. |
+| **Corpus Coverage Suite** | 102 Numbered Sections across Files 00–21 | **102 / 102 Passed (100%)** | Verified complete retrieval of every fee table, exception, window, and cross-reference tag. |
+| **Deterministic Unit Tests** | Rules, Math & Parsers (`test_cases.py`) | **16 / 16 Passed (100%)** | Half-up whole PKR rounding, 18% GST extraction (`Price × 18 / 118`), business day skipping. |
+| **Adversarial Immunity** | Planted Traps & Jailbreak Blocks | **0% Vulnerability** | 100% resilient against fake free-shipping rows, `SYSTEM OVERRIDE` blocks, and promo combining attacks. |
+
+---
+
+## Architecture & Design Highlights
+
+```mermaid
+graph TD
+    UserQuery["User Policy Scenario"] --> DateScopeFilter["Deterministic Date & Scope Filter"]
+    DateScopeFilter --> HybridRetriever["Hybrid Retriever (FAISS + BM25 + Reciprocal Rank Fusion)"]
+    HybridRetriever --> AnchoredFile00["File 00 Constitutional Core Anchored"]
+    AnchoredFile00 --> LLM["Google Cloud Vertex AI (Gemini 2.5 Flash) / Groq Failover"]
+    LLM --> PostProc["Deterministic Formatter (Plain-text Math & Section Citations)"]
+    PostProc --> FinalOutput["Verified Grounded Response with Citations"]
+```
+
+1. **Dual-Engine Architecture:** Precedence filtering (File 00 conventions) prevents temporal bleed between past (2025) and future (2027) files.
+2. **Mathematical Precision:** All calculations performed in whole Pakistani Rupees (PKR) with exact half-up rounding at each step.
+3. **National Identity UI:** Styled in Pakistan's national colors (*Sabz-o-Sufaid* — deep emerald `#012b12`, flag green `#01411c`, bright green `#10b981`, and white) with Crescent & Star insignia, live `/health` status badge, and judge quick-chips.
+4. **Interactive Pitch Deck:** 10-slide responsive HTML presentation deck served live at `/presentation`.
+
+---
+
+## Quick Start & Running Locally
+
+### 1. Installation
+```bash
+python -m pip install -r backend/requirements.txt
+```
+
+### 2. Configure Environment
+Copy `.env.example` to `.env` and set your credentials:
+```bash
+cp .env.example .env
+```
+Supported providers:
+- `LLM_PROVIDER=vertex` (Google Cloud Vertex AI with Gemini 2.5 Flash)
+- `LLM_PROVIDER=groq` (Groq API fallback with Llama 3.3 70B)
+
+### 3. Build Search Index & Run
+```bash
+python backend/ingest.py
+uvicorn backend.app:app --host 127.0.0.1 --port 8000
+```
+Or simply double-click `run.bat` on Windows.
+
+- **Web Chat App:** `http://127.0.0.1:8000`
+- **Interactive Pitch Deck:** `http://127.0.0.1:8000/presentation`
+
+---
+
+## Project Attribution & Credits
+
+- **Developer & Lead:** Muhammad Saad Cheema
+- **Institution:** Islamabad Model College for Boys (IMCB) G-10/4
+- **Competition:** Tech Fusion '26 AI Hackathon · Bahria University Islamabad (Challenge A)
+- **GitHub Repository:** [https://github.com/saadcheema-6242/novacart-policy-bot](https://github.com/saadcheema-6242/novacart-policy-bot)
+
+*Thank you to the judges, mentors, and the AI Club at Bahria University Islamabad.*

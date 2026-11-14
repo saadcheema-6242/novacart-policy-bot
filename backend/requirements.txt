@@ -1,0 +1,21 @@
+# --- LangChain core + integrations ---
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-openai>=0.2.0
+langchain-huggingface>=0.1.0
+langchain-google-vertexai>=2.0.0   # Gemini on Vertex AI (primary LLM)
+
+# --- Hybrid retrieval ---
+rank_bm25>=0.2.2
+
+# --- Vector store + embeddings ---
+faiss-cpu>=1.8.0
+sentence-transformers>=3.0.0
+
+# --- Web backend ---
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+
+# --- Utilities ---
+python-dotenv>=1.0.0
+pyyaml>=6.0

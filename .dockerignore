@@ -1,0 +1,16 @@
+.git
+.github
+.agents
+.venv
+venv
+env
+__pycache__
+*.py[cod]
+.pytest_cache
+tests
+.env
+HANDOFF.md
+SETUP.md
+skills-lock.json
+run.bat
+run.ps1
